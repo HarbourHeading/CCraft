@@ -70,8 +70,8 @@ end
 local function startMining(x_range, y_range, z_range, turn_direction, y_direction)
     x_range = x_range - 1
 
-    for y = 1, y_range, 1 do
-        for z = 1, z_range, 1 do
+    for y = 1, y_range do
+        for z = 1, z_range do
 
             moveForward(x_range)
 
