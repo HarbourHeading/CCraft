@@ -22,9 +22,9 @@ local function moveForwardAndBridge()
     turtle.digUp()
 
     while not turtle.placeDown() do
-    
+
         if turtle.getItemCount() == 0 then
-            error("Out of blocks to place. Operation stopped.", 0)
+            turtle.select(turtle.getSelectedSlot()+1)
         end
 
         turtle.digDown()
@@ -47,7 +47,7 @@ local function buildSideBridge(direction)
     while not turtle.place() do
 
         if turtle.getItemCount() == 0 then
-            error("Out of blocks to place. Operation stopped.", 0)
+            turtle.select(turtle.getSelectedSlot()+1)
         end
 
         turtle.dig()
