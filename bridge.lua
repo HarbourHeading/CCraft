@@ -62,13 +62,13 @@ local function buildSideBridge(direction)
 end
 
 -- startBridging: Main function to build the bridge over the specified distance with optional side extensions.
-local function startBridging(distance, buildLeft, buildRight)
+local function startBridging(distance, build_left, build_right)
     for _ = 1, distance do
-        if buildLeft then
+        if build_left then
             buildSideBridge("left")
         end
 
-        if buildRight then
+        if build_right then
             buildSideBridge("right")
         end
 
@@ -80,9 +80,9 @@ local function startBridging(distance, buildLeft, buildRight)
 end
 
 -- hasArgument: Checks if a specific argument exists within the argument list.
-local function hasArgument(argList, searchArg)
-    for _, arg in ipairs(argList) do
-        if arg == searchArg then
+local function hasArgument(arg_list, search_arg)
+    for _, arg in ipairs(arg_list) do
+        if arg == search_arg then
             return true
         end
     end
@@ -98,8 +98,8 @@ end
 
 local function main()
     validateArgs()
-    local buildLeft = hasArgument(arg, "left")
-    local buildRight = hasArgument(arg, "right")
+    local build_left = hasArgument(arg, "left")
+    local build_right = hasArgument(arg, "right")
 
     if turtle.getFuelLevel() < tonumber(arg[1]) then
         error("Not enough fuel for operation. Refuel.", 0)
@@ -113,7 +113,7 @@ local function main()
         if reply:lower() == "done" then break end
     end
 
-    startBridging(tonumber(arg[1]), buildLeft, buildRight)
+    startBridging(tonumber(arg[1]), build_left, build_right)
 end
 
 main()

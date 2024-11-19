@@ -104,12 +104,12 @@ local function turnAround()
 end
 
 -- startMining: Main function for mining the specified area in XYZ directions.
-local function startMining(x_range, y_range, z_range, turn_direction, y_direction, needsStorageSupport)
+local function startMining(x_range, y_range, z_range, turn_direction, y_direction, need_storage_support)
     for y = 1, y_range do
         for z = 1, z_range do
             moveForward(x_range)
 
-            if needsStorageSupport and nearFullInventory() then
+            if need_storage_support and nearFullInventory() then
                 turnAround()
                 placeAndEmptyInventory()
                 turnAround()
@@ -165,7 +165,7 @@ end
 
 local function main()
     validateArgs()
-    local needsStorageSupport = arg[6] == "storage"
+    local need_storage_support = arg[6] == "storage"
 
     print("Note: Place turtle inside the mining zone!")
 
@@ -176,7 +176,7 @@ local function main()
         error("Current fuel is insufficient for this operation. Fuel: " .. current_fuel, 0)
     end
 
-    if needsStorageSupport then
+    if need_storage_support then
         turtle.select(1)
         print("Provide storage unit in slot 1.")
         while turtle.getItemDetail() == nil do
@@ -184,7 +184,7 @@ local function main()
         end
     end
 
-    startMining(tonumber(arg[1]) - 1, tonumber(arg[2]), tonumber(arg[3]), arg[4], arg[5], needsStorageSupport)
+    startMining(tonumber(arg[1]) - 1, tonumber(arg[2]), tonumber(arg[3]), arg[4], arg[5], need_storage_support)
 end
 
 main()
